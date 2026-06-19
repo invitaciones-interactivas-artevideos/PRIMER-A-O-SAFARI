@@ -328,8 +328,8 @@ section > div {
 const CONFIG = {
     global: {
         /* Para editar los textos y estilos de portada, usar el bloque "portada" de abajo */
-        nombres: "Sofía",
-        frase: "Mis XV años",
+        nombres: "Lucas",
+        frase: "Mi Primer Añito",
         fecha: "",
         fechaCuenta: new Date(2026, 11, 20, 17, 0),
         tipoPortada: "foto", // "foto", "video" o "diseno"
@@ -365,9 +365,9 @@ portada: {
     },
     nombre: {
         mostrar: true,
-        texto: "Sofía",
-        fuente: 12,
-        color: "#B5104E",
+        texto: "Lucas",
+        fuente: 2,
+        color: "",
         tamaño: "clamp(4rem, 9vw, 6rem)",
         tamañoMovil: "4rem",
         grosor: 300,
@@ -409,7 +409,7 @@ portada: {
 },
 
 diseno: {
-   paleta: 1,
+   paleta: 5,
    fuenteTitulo:12,
    fuenteTexto: 1,
    tamañoTitulo: "1.8rem", //de las secciones
@@ -418,9 +418,8 @@ diseno: {
    espacioTextoABoton: 40,
 },
 textos: {
-    tituloHistoria: "Llega la noche soñada",
-   historia: `Después de tantos sueños, planes y emoción, llegó el momento de celebrar una noche única. ✨<br>
-Quiero que me acompañes a vivir una fiesta llena de risas, música, baile y momentos que recordaré para siempre.`
+    tituloHistoria: "Mi Primer cumple!",
+   historia: `Deseo que me acompañes a celebrar este día tan especial.`
 },
 
 eventos: {
@@ -438,7 +437,7 @@ eventos: {
         mostrar: true,
         t: "",
         f: "20 de noviembre",
-        h: "21:00 Horas",
+        h: "16:00 Horas",
         l: "Salón de Eventos Aurora Palace",
         d: "Avda Las Palmas 1212, Montevideo",
         m: "https://www.google.com/maps"
@@ -446,7 +445,7 @@ eventos: {
 },
 
 playlist: {
-    mostrar: true, // Cambiar a false para ocultar esta seccion
+    mostrar: false, // Cambiar a false para ocultar esta seccion
     titulo: "Playlist",
     texto: "Ayudame a elegir las canciones que no pueden faltar",
     boton: "playlist",
@@ -454,6 +453,7 @@ playlist: {
 },
 
 regalos: {
+     mostrar: false,
     textoSeccion: "El mejor regalo es que estés presente, pero si deseas colaborar con mis sueños, tienes la info aquí:",
     textoModal: "Datos de cuenta colectiva",
     titular: "Sofía 15 años",
