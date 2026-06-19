@@ -484,12 +484,59 @@ const CONFIG = {
   },
 
   decoraciones: {
-    historia: { imagen: "jirafa.png", tamaño: 140, top: 20, right: 20 },
-    cuenta: { imagen: "elefante.png", tamaño: 120, top: 20, left: 20 },
-    ubicacion: { imagen: "leon.png", tamaño: 130, bottom: 20, right: 20 },
-    galeria: { imagen: "mono.png", tamaño: 150, top: 20, right: 20 },
-    rsvp: { imagen: "cebra.png", tamaño: 120, bottom: 20, left: 20 }
+  mostrarGlobal: true,
+
+  estilo: {
+    opacidad: 0.25,
+    zIndex: 0,
+    modo: "float" // float | fijo
   },
+
+  historia: {
+    mostrar: true,
+    imagen: "jirafa.png",
+    tamañoPC: 140,
+    tamañoMovil: 90,
+    top: 20,
+    right: 20
+  },
+
+  cuenta: {
+    mostrar: true,
+    imagen: "elefante.png",
+    tamañoPC: 120,
+    tamañoMovil: 80,
+    top: 20,
+    left: 20
+  },
+
+  ubicacion: {
+    mostrar: true,
+    imagen: "leon.png",
+    tamañoPC: 130,
+    tamañoMovil: 85,
+    bottom: 20,
+    right: 20
+  },
+
+  galeria: {
+    mostrar: true,
+    imagen: "mono.png",
+    tamañoPC: 150,
+    tamañoMovil: 100,
+    top: 20,
+    right: 20
+  },
+
+  rsvp: {
+    mostrar: true,
+    imagen: "cebra.png",
+    tamañoPC: 120,
+    tamañoMovil: 80,
+    bottom: 20,
+    left: 20
+  }
+}
 
   cierre: {
     t: "¡Te espero!",
@@ -804,21 +851,31 @@ const ORNAMENTOS = {
     estrellas: `<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"/><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"/><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"/></svg>`,
     ondas: `<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 36c20-20 40 20 60 0s30-8 40 0"/><path d="M10 60c20-20 40 20 60 0s30-8 40 0"/><path d="M10 84c20-20 40 20 60 0s30-8 40 0"/></svg>`
 };
-  function aplicarDecoraciones() {
+ function aplicarDecoraciones() {
     const deco = CONFIG.decoraciones || {};
+    if (!deco.mostrarGlobal) return;
+
+    const esMovil = window.innerWidth < 768;
 
     Object.keys(deco).forEach(seccionId => {
         const data = deco[seccionId];
-        const section = document.getElementById(seccionId);
 
-        if (!section || !data) return;
+        if (!data || data.mostrar === false) return;
+        if (seccionId === "estilo" || seccionId === "mostrarGlobal") return;
+
+        const section = document.getElementById(seccionId);
+        if (!section) return;
 
         const el = document.createElement("div");
         el.className = "decoracion-png";
-        el.innerHTML = `<img src="${data.imagen}">`;
+
+        const size = esMovil ? data.tamañoMovil : data.tamañoPC;
+
+        el.innerHTML = `<img src="${data.imagen}" style="width:${size}px;">`;
 
         el.style.position = "absolute";
-        el.style.width = data.tamaño + "px";
+        el.style.opacity = deco.estilo?.opacidad ?? 0.2;
+        el.style.zIndex = deco.estilo?.zIndex ?? 0;
 
         if (data.top !== undefined) el.style.top = data.top + "px";
         if (data.bottom !== undefined) el.style.bottom = data.bottom + "px";
