@@ -464,14 +464,88 @@ regalos: {
 
 ornamentos: {
     secciones: {
-        mostrar: true, // Cambiar a false para ocultar los ornamentos
-        tipo: "estrellas", // floral, estrellas, ondas
-        color: "", // Dejar vacio para usar el color del boton de la paleta
+        mostrar: true,
+        tipo: "estrellas",
+        color: "",
         opacidad: 0.08,
         tamaño: 220,
         posiciones: ["top-left", "bottom-right"],
-        excluirSecciones: [] // Ejemplo: ["galeria", "regalos"]
+        excluirSecciones: []
     },
+
+    portada: {
+        mostrar: false,
+        tipo: "estrellas",
+        color: "#FFFFFF",
+        opacidad: 0.16,
+        tamaño: 180,
+        posiciones: ["top-left", "top-right"]
+    }
+},
+
+// 👇 ESTO VA FUERA DE ORNAMENTOS
+decoraciones: {
+    historia: {
+        imagen: "jirafa.png",
+        tamaño: 140,
+        top: 20,
+        right: 20
+    },
+    cuenta: {
+        imagen: "elefante.png",
+        tamaño: 120,
+        top: 20,
+        left: 20
+    },
+    ubicacion: {
+        imagen: "leon.png",
+        tamaño: 130,
+        bottom: 20,
+        right: 20
+    },
+    galeria: {
+        imagen: "mono.png",
+        tamaño: 150,
+        top: 20,
+        right: 20
+    },
+    rsvp: {
+        imagen: "cebra.png",
+        tamaño: 120,
+        bottom: 20,
+        left: 20
+    }
+},
+
+    cuenta: {
+        imagen: "elefante.png",
+        tamaño: 120,
+        top: 20,
+        left: 20
+    },
+
+    ubicacion: {
+        imagen: "leon.png",
+        tamaño: 130,
+        bottom: 20,
+        right: 20
+    },
+
+    galeria: {
+        imagen: "mono.png",
+        tamaño: 150,
+        top: 20,
+        right: 20
+    },
+
+    rsvp: {
+        imagen: "cebra.png",
+        tamaño: 120,
+        bottom: 20,
+        left: 20
+    }
+
+},
     portada: {
         mostrar: false,
         tipo: "estrellas",
@@ -498,6 +572,8 @@ fotos: [
     "foto8.jpg",
     "foto9.jpg",
     "foto10.jpg"
+
+
 ]
   };
   /* ========= PALETAS DE COLORES ========= */
@@ -802,6 +878,30 @@ const ORNAMENTOS = {
     estrellas: `<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"/><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"/><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"/></svg>`,
     ondas: `<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 36c20-20 40 20 60 0s30-8 40 0"/><path d="M10 60c20-20 40 20 60 0s30-8 40 0"/><path d="M10 84c20-20 40 20 60 0s30-8 40 0"/></svg>`
 };
+  function aplicarDecoraciones() {
+    const deco = CONFIG.decoraciones || {};
+
+    Object.keys(deco).forEach(seccionId => {
+        const data = deco[seccionId];
+        const section = document.getElementById(seccionId);
+
+        if (!section || !data) return;
+
+        const el = document.createElement("div");
+        el.className = "decoracion-png";
+        el.innerHTML = `<img src="${data.imagen}">`;
+
+        el.style.position = "absolute";
+        el.style.width = data.tamaño + "px";
+
+        if (data.top !== undefined) el.style.top = data.top + "px";
+        if (data.bottom !== undefined) el.style.bottom = data.bottom + "px";
+        if (data.left !== undefined) el.style.left = data.left + "px";
+        if (data.right !== undefined) el.style.right = data.right + "px";
+
+        section.appendChild(el);
+    });
+}
 
 function crearOrnamento(config, posicion, colorBase) {
     const ornamento = document.createElement('div');
