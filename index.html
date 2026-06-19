@@ -1,74 +1,865 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitación Digital Premium</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cormorant+Garamond&family=Jost&display=swap" rel="stylesheet">
-    <style>
-        :root { --bg-1: #F5F0E4; --bg-2: #DDD5B0; --accent: #C9A227; --title-color: #5A4A0F; --text-color: #4A3C1E; --title-font: 'Cinzel', serif; --body-font: 'Cormorant Garamond', serif; }
-        body { background-color: var(--bg-1); color: var(--text-color); font-family: var(--body-font); text-align: center; margin: 0; }
-        #cover { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; }
-        #cover-bg { position: absolute; inset: 0; background-size: cover; background-position: center; }
-        section { padding: 4rem 1.5rem; opacity: 0; transform: translateY(20px); transition: 0.8s; }
-        section.visible { opacity: 1; transform: translateY(0); }
-        .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 2rem; }
-        .gallery-item { aspect-ratio: 1/1; overflow: hidden; border-radius: 10px; cursor: pointer; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
-        .btn { display: inline-block; padding: 1rem 2rem; margin-top: 20px; background: var(--accent); color: white; text-decoration: none; border-radius: 50px; }
-        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: none; align-items: center; justify-content: center; z-index: 9999; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación Digital Premium</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link id="font-link" href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Cinzel:wght@300;400;500&family=Cormorant+Garamond:wght@300;400&family=Great+Vibes&family=Jost:wght@300;400&family=Montserrat:wght@300;400;500&family=Nunito:wght@300;400&family=Parisienne&family=Playfair+Display:wght@300;400;500&family=Poppins:wght@300;400;500&family=Quicksand:wght@300;400;500&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ── VARIABLES DE DISEÑO ── */
+:root {
+  --bg-1: #FFFFFF;
+  --bg-2: #EBDEDE;
+  --accent: #D4A5A5; 
+  --title-color: #B5104E;
+  --text-color: #8A7575;
+  --title-font: 'Cormorant Garamond', serif;
+  --body-font: 'Jost', sans-serif;
+  --title-size: 3rem;
+  --body-size: 1.5rem;
+  
+  /* Estas variables se llenan automáticamente con el menú CONFIG */
+  --espacio-titulo-texto: 3rem;
+  --espacio-texto-boton: 1.5rem;
+  --pos-pc-vertical: 50%;
+  --pos-movil-vertical: 50%;
+  --cover-content-width: 900px;
+  --cover-content-x: 0px;
+  --cover-content-y: 130px;
+  --cover-content-x-mobile: 0px;
+  --cover-content-y-mobile: 130px;
+  --cover-text-align: center;
+}
+
+/* ── RESET & BASE ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { 
+    background-color: var(--bg-1); color: var(--text-color); 
+    font-family: var(--body-font); line-height: 1.6; text-align: center;
+}
+
+/* ── PORTADA ── */
+#cover {
+  position: relative; height: 100vh; display: flex; 
+  align-items: center; justify-content: center; overflow: hidden; color: #FFFFFF;
+} 
+#cover-bg { 
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center var(--pos-movil-vertical);
+}
+
+#cover-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+/* Ajuste preciso para PC */
+@media (min-width: 768px) {
+    #cover-bg {
+        background-position: center var(--pos-pc-vertical) !important;
+    }
+}
+
+#cover-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.35); }
+#cover-content {
+  position: relative;
+  z-index: 2;
+  width: min(90vw, var(--cover-content-width));
+  padding: 20px;
+  text-align: var(--cover-text-align);
+  transform: translate(var(--cover-content-x), var(--cover-content-y));
+}
+#t-eyebrow,
+#t-names,
+#t-cover-date {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-wrap: anywhere;
+}
+#cover h1 {
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  #cover-content {
+    transform: translate(var(--cover-content-x-mobile), var(--cover-content-y-mobile));
+  }
+}
+
+/* ── ICONOS FLOTANTES ── */
+.icon-container {
+    width: 45px; margin: 0 auto; color: var(--accent);
+    margin-bottom: var(--espacio-titulo-texto); /* Usa el espaciado configurable */
+    animation: floating 3s ease-in-out infinite;
+}
+@keyframes floating {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+
+/* ── SECCIONES ── */
+section { padding: 6rem 1.5rem; opacity: 0; transform: translateY(20px); transition: 1s all ease; }
+section.visible { opacity: 1; transform: translateY(0); }
+section:nth-of-type(odd) { background-color: var(--bg-1) !important; }
+section:nth-of-type(even) { background-color: var(--bg-2) !important; }
+
+h2 { 
+    font-family: var(--title-font); font-size: var(--title-size); 
+    font-weight: 300; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--title-color); 
+    margin-bottom: var(--espacio-titulo-texto); /* ESPACIADO TITULO -> TEXTO */
+  }
+  p {
+    font-size: var(--body-size);
+  
+}
+h3 {
+    font-family: var(--title-font);
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    color: var(--title-color);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+
+    position: relative;
+}
+
+h3::after {
+    content: "";
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+    margin: 10px auto 0;
+    opacity: 0.6;
+}
+/* ── BOTONES ── */
+.btn,
+button.btn,
+a.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1rem 2.2rem;
+    margin-top: var(--espacio-texto-boton);
+
+    background: var(--accent);
+    color: #1b1b1b !important;
+
+    font-family: var(--body-font) !important;
+    font-size: 0.75rem !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+
+    box-shadow:
+        0 8px 18px rgba(0,0,0,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.35);
+
+    transition: all 0.25s ease;
+
+    /* importante para que no “deforme” el layout */
+    width: auto;
+}
+/* ── OTROS ELEMENTOS ── */
+.scroll-arrow {
+    position: absolute; bottom: 110px; left: 50%; transform: translateX(-50%);
+    width: 30px; height: 30px; color: white; z-index: 10; animation: bounce 2s infinite;
+}
+@keyframes bounce { 0%, 100% { transform: translate(-50%, 0); opacity: 0.3; } 50% { transform: translate(-50%, 15px); opacity: 1; } }
+
+.countdown-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; max-width: 400px; margin: 2rem auto; }
+.cd-item { background: white; padding: 15px 5px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.cd-num { display: block; font-family: var(--title-font); font-size: 1.6rem; color: var(--accent); font-weight: bold; }
+.cd-lab { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px;color: #1B1B1B; }
+
+.gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 2rem; }
+.gallery-item { aspect-ratio: 1/1; overflow: hidden; border-radius: 15px; cursor: pointer; }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
+
+.modal {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.5); backdrop-filter: blur(10px);
+    display: none; align-items: center; justify-content: center; z-index: 4000; padding: 20px;
+}
+.modal-content {
+    background: rgba(255, 255, 255, 0.25); border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 30px; width: 100%; max-width: 380px; padding: 2.5rem 1.5rem; color: white; position: relative;
+}
+.close-btn { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; color: white; cursor: pointer; }
+
+#toast {
+    position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%);
+    background: rgba(0,0,0,0.85); color: white; padding: 10px 25px;
+    border-radius: 50px; font-size: 0.8rem; z-index: 7000; display: none;
+}
+
+#music-btn {
+    position: fixed; bottom: 25px; right: 25px; width: 45px; height: 45px;
+    background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); z-index: 5000; cursor: pointer; color: var(--accent);
+}
+
+#lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 6000; display: none; align-items: center; justify-content: center; }
+#lightbox img { max-width: 90%; max-height: 80%; border-radius: 10px; }
+
+@media (min-width: 768px) { 
+    .gallery-grid { grid-template-columns: repeat(4, 1fr); } 
+}
+
+/* ═════════ ORNAMENTOS DECORATIVOS ═════════ */
+
+section {
+    position: relative;
+    overflow: hidden;
+}
+
+section > div {
+    position: relative;
+    z-index: 1;
+}
+
+/* capa base */
+.ornamento {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 0;
+    animation: floatOrnamento 8s ease-in-out infinite;
+}
+
+.ornamento svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* posiciones */
+.orn-top-left { top: -40px; left: -40px; }
+.orn-top-right { top: -40px; right: -40px; }
+.orn-bottom-left { bottom: -50px; left: -50px; }
+.orn-bottom-right { bottom: -50px; right: -50px; }
+
+/* flotación suave premium */
+@keyframes floatOrnamento {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+
+}
+</style>
 </head>
 <body>
 
-    <div id="cover">
-        <div id="cover-bg" style="background-image: url('cover.jpg');"></div>
-        <div id="cover-content"><h1>Mi Primer Añito</h1></div>
-    </div>
+<div id="toast">Cuenta copiada</div>
 
-    <div id="main-content"></div>
+<div id="music-btn" onclick="toggleMusic()">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+</div>
+<audio id="bg-music" src="musica.mp3" loop></audio>
 
-    <div id="lightbox" class="modal" onclick="this.style.display='none'">
-        <img id="lb-img" style="max-width:90%; max-height:80%;">
+<div id="cover">
+   <div id="cover-bg"></div>
+
+<video id="cover-video" autoplay muted loop playsinline>
+    <source src="" type="video/mp4">
+</video>
+    <div id="cover-overlay"></div>
+    <div id="cover-content">
+        <span id="t-eyebrow"></span>
+        <h1 id="t-names"></h1>
+        <p id="t-cover-date"></p>
     </div>
+    <div class="scroll-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg></div>
+</div>
+
+<div id="main-content"></div>
+
+<!-- Modal Regalos -->
+<div id="gift-modal" class="modal" onclick="closeGiftModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-btn" onclick="closeGiftModal()">&times;</span>
+   
+        <p id="m-texto" style="font-size: 1.5rem; margin-bottom: 10px; opacity: 0.9;"></p>
+        <div style="background: rgba(0,0,0,0.25); border-radius: 20px; padding: 1rem; margin: 1.5rem 0; text-align: left;">
+            <div style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><span style="font-size: 0.6rem; text-transform: uppercase; opacity: 0.7;">Titular</span><span style="font-size: 1rem; display: block; font-weight: 300;" id="m-titular"></span></div>
+            <div style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><span style="font-size: 0.6rem; text-transform: uppercase; opacity: 0.7;">Banco</span><span style="font-size: 1rem; display: block; font-weight: 300;" id="m-banco"></span></div>
+            <div style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);"><span style="font-size: 0.6rem; text-transform: uppercase; opacity: 0.7;">Número</span><span style="font-size: 1rem; display: block; font-weight: 300;" id="m-cuenta"></span></div>
+            <div style="padding: 8px 0;"><span style="font-size: 0.6rem; text-transform: uppercase; opacity: 0.7;">CI</span><span style="font-size: 1rem; display: block; font-weight: 300;" id="m-ci"></span></div>
+        </div>
+        <button class="btn" style="width: 100%; margin-top:0;" onclick="copyAcc()">
+  Copiar cuenta
+</button>
+    </div>
+</div>
+
+<div id="lightbox" onclick="closeLightbox()">
+    <span class="close-btn" style="position:fixed; top:30px; right:30px; font-size:3rem;">&times;</span>
+    <img src="" onclick="event.stopPropagation()">
+</div>
 
 <script>
-/* CONFIGURACIÓN FÁCIL */
+/* ════════════════════════════════════════
+   ★ CONFIGURACIÓN FÁCIL
+═════════════════════════════════════════= */
 const CONFIG = {
-    textos: { tituloHistoria: "¡Se Acerca Mi Primer Cumple!", historia: "Deseo que me acompañes a celebrar este día tan especial." },
-    fotos: ["foto1.jpg", "foto2.jpg", "foto3.jpg", "foto4.jpg", "foto5.jpg", "foto6.jpg"]
+    global: {
+        /* Para editar los textos y estilos de portada, usar el bloque "portada" de abajo */
+        nombres: "Sofía",
+        frase: "Mis XV años",
+        fecha: "",
+        fechaCuenta: new Date(2026, 11, 20, 17, 0),
+        tipoPortada: "foto", // "foto", "video" o "diseno"
+
+fotoPort: "cover.jpg",
+videoPort: "portada.mp4",
+disenoPort: "floral.jpg",
+
+        /* ──── POSICIÓN DE LA FOTO (Usar números de 0 a 100) ──── */
+        /* 0 = Arriba de todo | 50 = Centro | 100 = Abajo de todo */
+        posicionVerticalPC: 35, 
+        posicionVerticalMovil: 50
+    },
+
+portada: {
+    /* Textos principales de la portada */
+    /* FUENTES: 1 Cormorant | 2 Great Vibes | 3 Playfair | 4 Jost | 5 Poppins | 6 Montserrat | 7 Quicksand | 8 Georgia | 9 Parisienne | 10 Allura | 11 Alex Brush | 12 Cinzel | 13 Raleway | 14 Nunito */
+    frase: {
+        mostrar: true,
+        texto: "Mis XV años",
+        fuente: 13,
+        color: "#FFFFFF",
+        tamaño: "2rem",
+        tamañoMovil: "1.35rem",
+        grosor: 300,
+        espaciadoLetras: "5px",
+        interlineado: "1.2",
+        mayusculas: true,
+        margenAbajo: "1.5rem",
+        moverDerechaIzquierda: 0,
+        moverArribaAbajo: 0,
+        sombra: "0 2px 12px rgba(0,0,0,0.25)"
+    },
+    nombre: {
+        mostrar: true,
+        texto: "Sofía",
+        fuente: 12,
+        color: "#B5104E",
+        tamaño: "clamp(4rem, 9vw, 6rem)",
+        tamañoMovil: "4rem",
+        grosor: 300,
+        espaciadoLetras: "2px",
+        interlineado: "1",
+        mayusculas: false,
+        margenAbajo: "1rem",
+        moverDerechaIzquierda: 0,
+        moverArribaAbajo: 0,
+        sombra: "0 3px 18px rgba(255,255,255,0.18)"
+    },
+    fecha: {
+        mostrar: false,
+        texto: "",
+        fuente: 13,
+        color: "#FFFFFF",
+        tamaño: "1.3rem",
+        tamañoMovil: "1rem",
+        grosor: 300,
+        espaciadoLetras: "3px",
+        interlineado: "1.3",
+        mayusculas: true,
+        margenArriba: "0.2rem",
+        moverDerechaIzquierda: 0,
+        moverArribaAbajo: 0,
+        sombra: "0 2px 12px rgba(0,0,0,0.25)"
+    },
+    cajaTexto: {
+        anchoMaximo: "900px",
+        alineacion: "center", // center, left o right
+        moverDerechaIzquierdaPC: 0,
+        moverArribaAbajoPC: 130,
+        moverDerechaIzquierdaMovil: 0,
+        moverArribaAbajoMovil: 130
+    },
+    fondo: {
+        oscurecer: "rgba(0,0,0,0.35)"
+    }
+},
+
+diseno: {
+   paleta: 1,
+   fuenteTitulo:12,
+   fuenteTexto: 1,
+   tamañoTitulo: "1.8rem", //de las secciones
+   tamañoTexto: "1.2rem",  //de las secciones
+   espacioTituloATexto: 30,
+   espacioTextoABoton: 40,
+},
+textos: {
+    tituloHistoria: "Llega la noche soñada",
+   historia: `Después de tantos sueños, planes y emoción, llegó el momento de celebrar una noche única. ✨<br>
+Quiero que me acompañes a vivir una fiesta llena de risas, música, baile y momentos que recordaré para siempre.`
+},
+
+eventos: {
+    ceremonia: { 
+        mostrar: false,
+        t: "Ceremonia",
+        f: "20 de noviembre",
+        h: "17:00 Horas",
+        l: "Iglesia San Francisco de Asís",
+        d: "Cmno. Torres 3231, Montevideo",
+        m: "https://www.google.com/maps"
+    },
+
+    fiesta: { 
+        mostrar: true,
+        t: "",
+        f: "20 de noviembre",
+        h: "21:00 Horas",
+        l: "Salón de Eventos Aurora Palace",
+        d: "Avda Las Palmas 1212, Montevideo",
+        m: "https://www.google.com/maps"
+    }
+},
+
+playlist: {
+    mostrar: true, // Cambiar a false para ocultar esta seccion
+    titulo: "Playlist",
+    texto: "Ayudame a elegir las canciones que no pueden faltar",
+    boton: "playlist",
+    formulario: "https://docs.google.com/forms/d/e/FORM_ID/viewform"
+},
+
+regalos: {
+    textoSeccion: "El mejor regalo es que estés presente, pero si deseas colaborar con mis sueños, tienes la info aquí:",
+    textoModal: "Datos de cuenta colectiva",
+    titular: "Sofía 15 años",
+    banco: "Santander",
+    cuenta: "1234567890",
+    ci: "1.234.567-8"
+},
+
+ornamentos: {
+    secciones: {
+        mostrar: true, // Cambiar a false para ocultar los ornamentos
+        tipo: "floral", // floral, estrellas, ondas
+        color: "", // Dejar vacio para usar el color del boton de la paleta
+        opacidad: 0.08,
+        tamaño: 220,
+        posiciones: ["top-left", "bottom-right"],
+        excluirSecciones: [] // Ejemplo: ["galeria", "regalos"]
+    },
+    portada: {
+        mostrar: false,
+        tipo: "estrellas",
+        color: "#FFFFFF",
+        opacidad: 0.16,
+        tamaño: 180,
+        posiciones: ["top-left", "top-right"]
+    }
+},
+
+cierre: {
+    t: "¡Te espero!",
+    s: "Tu presencia es muy importante<br> para mí."
+},
+
+fotos: [
+    "foto1.jpg",
+    "foto2.jpg",
+    "foto3.jpg",
+    "foto4.jpg",
+    "foto5.jpg",
+    "foto6.jpg",
+    "foto7.jpg",
+    "foto8.jpg",
+    "foto9.jpg",
+    "foto10.jpg"
+]
+  };
+  /* ========= PALETAS DE COLORES ========= */
+  
+/* ========= FUENTES DISPONIBLES ========= */
+
+const FUENTES = {
+
+  1: "'Cormorant Garamond', serif",
+
+  2: "'Great Vibes', cursive",
+
+  3: "'Playfair Display', serif",
+
+  4: "'Jost', sans-serif",
+
+  5: "'Poppins', sans-serif",
+
+  6: "'Montserrat', sans-serif",
+
+  7: "'Quicksand', sans-serif",
+    
+  8: "Georgia, serif" ,
+
+9: "'Parisienne', cursive",
+  
+10: "'Allura', cursive",
+  
+11: "'Alex Brush', cursive",
+  
+12: "'Cinzel', serif",
+  
+13: "'Raleway', sans-serif",
+  
+14: "'Nunito', sans-serif"
+  
+
+};
+  
+  const PALETAS = {
+
+
+    
+
+  1: {
+    bg1: "#FFFFFF", //rosa
+    bg2: "#F4E3E3",
+    titulo: "#B5104E",
+    texto: "#5A4A4A",
+    boton: "#C7A9BF"
+  },
+
+  2: {
+    bg1: "#FFF8ED", //arena
+    bg2: "#EAD7BC",
+    titulo: "#6B4E2E",
+    texto: "#58473A",
+    boton: "#C9A56D"
+  },
+
+  3: {
+    bg1: "#F6FBFF", //azul
+    bg2: "#D9EAF7",
+    titulo: "#325B88",
+    texto: "#425D75",
+    boton: "#7DA8D6"
+  },
+
+  4: {
+    bg1: "#FAF5FF", //lila
+    bg2: "#E8D8F7",
+    titulo: "#66408A",
+    texto: "#56436A",
+    boton: "#A881D4"
+  },
+
+  5: {
+    bg1: "#F7FBF7", //verde1
+    bg2: "#DCE8D8",
+    titulo: "#49614C",
+    texto: "#485748",
+    boton: "#D6B45D"
+  },
+
+  6: {
+    bg1: "#1B1B1B", //negro y dorado
+    bg2: "#303030",
+    titulo: "#D6B45D",
+    texto: "#F1E7CC",
+    boton: "#D6B45D"
+  },
+    
+7: {
+    bg1: "#F6FAF7",   // casi blanco verdoso
+    bg2: "#DDEBE2",   // verde suave elegante
+    titulo: "#2F4A3A", // verde oscuro elegante
+    texto: "#4A5A52",  // gris verdoso legible
+    boton: "#6FAF86"   // verde principal (NO amarillo)
+},
+8: {
+   bg1: "#FBF6EF", // marron 1
+  bg2: "#E9D7C3",
+  titulo: "#6B4A2E",
+  texto: "#5A4636",
+  boton: "#B07A4A"
+},
+    
+9: {
+  bg1: "#F5EFE8", //marron 2
+  bg2: "#D9C2A6",
+  titulo: "#5C3A22",
+  texto: "#4A3527",
+  boton: "#8C5A35"
+},
+    
+10: {
+  bg1: "#FAF4EE", //marron elegante
+  bg2: "#E6D2C0",
+  titulo: "#4E3425",
+  texto: "#4A3A32",
+  boton: "#9B6B43"
+    },
+
+  11: {
+  bg1: "#F6EFEA",//terracota
+  bg2: "#E3C3AC",
+  titulo: "#6B3F2A",
+  texto: "#5A4439",
+  boton: "#D9A48F"
+}
 };
 
-/* LÓGICA DE CONSTRUCCIÓN (SIN DUPLICADOS) */
-const main = document.getElementById('main-content');
+// --- APLICAR CONFIGURACIÓN AUTOMÁTICAMENTE ---
+const root = document.documentElement;
 
-function createSec(title, content) {
+/* Aplicar paleta elegida */
+const colores = PALETAS[CONFIG.diseno.paleta];
+
+root.style.setProperty('--bg-1', colores.bg1);
+root.style.setProperty('--bg-2', colores.bg2);
+root.style.setProperty('--title-color', colores.titulo);
+root.style.setProperty('--text-color', colores.texto);
+root.style.setProperty('--accent', colores.boton); root.style.setProperty('--title-font', FUENTES[CONFIG.diseno.fuenteTitulo]);
+root.style.setProperty('--body-size', CONFIG.diseno.tamañoTexto);
+root.style.setProperty('--body-font', FUENTES[CONFIG.diseno.fuenteTexto]);
+root.style.setProperty('--title-size', CONFIG.diseno.tamañoTitulo);  
+root.style.setProperty('--pos-pc-vertical', CONFIG.global.posicionVerticalPC + '%');
+root.style.setProperty('--pos-movil-vertical', CONFIG.global.posicionVerticalMovil + '%');
+root.style.setProperty('--espacio-titulo-texto', CONFIG.diseno.espacioTituloATexto + 'px');
+root.style.setProperty('--espacio-texto-boton', CONFIG.diseno.espacioTextoABoton + 'px');
+
+function valorCSS(valor, unidad = "px") {
+    if (valor === undefined || valor === null || valor === "") return "";
+    return typeof valor === "number" ? valor + unidad : valor;
+}
+
+function aplicarEstiloTextoPortada(elemento, configTexto, textoRespaldo, permiteAmpersand = false) {
+    if (!elemento || !configTexto || configTexto.mostrar === false) {
+        if (elemento) elemento.style.display = "none";
+        return;
+    }
+
+    const esMovil = window.matchMedia("(max-width: 767px)").matches;
+    const texto = configTexto.texto !== undefined ? configTexto.texto : textoRespaldo;
+
+    elemento.style.display = "block";
+    elemento.style.fontFamily = FUENTES[configTexto.fuente] || configTexto.fuente || FUENTES[CONFIG.diseno.fuenteTitulo];
+    elemento.style.color = configTexto.color || "#FFFFFF";
+    elemento.style.fontSize = esMovil && configTexto.tamañoMovil ? configTexto.tamañoMovil : configTexto.tamaño;
+    elemento.style.fontWeight = configTexto.grosor || 300;
+    elemento.style.letterSpacing = valorCSS(configTexto.espaciadoLetras);
+    elemento.style.lineHeight = configTexto.interlineado || "1";
+    elemento.style.textTransform = configTexto.mayusculas ? "uppercase" : "none";
+    elemento.style.marginTop = valorCSS(configTexto.margenArriba || 0);
+    elemento.style.marginBottom = valorCSS(configTexto.margenAbajo || 0);
+    elemento.style.textShadow = configTexto.sombra || "none";
+    elemento.style.transform = `translate(${valorCSS(configTexto.moverDerechaIzquierda || 0)}, ${valorCSS(configTexto.moverArribaAbajo || 0)})`;
+
+    if (permiteAmpersand) {
+        elemento.innerHTML = String(texto || "").replace(/&/g, "<em>&</em>");
+    } else {
+        elemento.innerText = texto || "";
+    }
+}
+
+function aplicarPortada() {
+    const portada = CONFIG.portada || {};
+    const cajaTexto = portada.cajaTexto || {};
+
+    root.style.setProperty('--cover-content-width', cajaTexto.anchoMaximo || '900px');
+    root.style.setProperty('--cover-content-x', valorCSS(cajaTexto.moverDerechaIzquierdaPC || 0));
+    root.style.setProperty('--cover-content-y', valorCSS(cajaTexto.moverArribaAbajoPC || 0));
+    root.style.setProperty('--cover-content-x-mobile', valorCSS(cajaTexto.moverDerechaIzquierdaMovil || 0));
+    root.style.setProperty('--cover-content-y-mobile', valorCSS(cajaTexto.moverArribaAbajoMovil || 0));
+    root.style.setProperty('--cover-text-align', cajaTexto.alineacion || 'center');
+
+    const overlay = document.getElementById('cover-overlay');
+    if (overlay && portada.fondo && portada.fondo.oscurecer) {
+        overlay.style.background = portada.fondo.oscurecer;
+    }
+
+    aplicarEstiloTextoPortada(document.getElementById('t-eyebrow'), portada.frase, CONFIG.global.frase);
+    aplicarEstiloTextoPortada(document.getElementById('t-names'), portada.nombre, CONFIG.global.nombres, true);
+    aplicarEstiloTextoPortada(document.getElementById('t-cover-date'), portada.fecha, CONFIG.global.fecha);
+}
+
+const coverBg = document.getElementById('cover-bg');
+const coverVideo = document.getElementById('cover-video');
+
+if (CONFIG.global.tipoPortada === "video") {
+    coverBg.style.display = "none";
+    coverVideo.style.display = "block";
+    coverVideo.querySelector("source").src = CONFIG.global.videoPort;
+    coverVideo.load();
+
+} else if (CONFIG.global.tipoPortada === "diseno") {
+    coverBg.style.display = "block";
+    coverVideo.style.display = "none";
+    coverBg.style.backgroundImage = `url('${CONFIG.global.disenoPort}')`;
+
+} else {
+    // Foto (por defecto)
+    coverBg.style.display = "block";
+    coverVideo.style.display = "none";
+    coverBg.style.backgroundImage = `url('${CONFIG.global.fotoPort}')`;
+}
+aplicarPortada();
+window.addEventListener("resize", aplicarPortada);
+
+const main = document.getElementById('main-content');
+const iconSet = {
+    heart: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`,
+    calendar: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>`,
+    map: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
+    camera: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>`,
+    rings: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="8" cy="12" r="6"/><circle cx="16" cy="12" r="6"/></svg>`,
+    gift: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20 12v10H4V12M2 7h20v5H2zM12 22V7M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>`,
+star: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+<path d="M12 2l2.8 6.2L22 9l-5 4.7L18.2 22 12 18.5 5.8 22 7 13.7 2 9l7.2-.8L12 2z"/>
+</svg>`,
+music: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>`
+};
+
+function createSec(id, icon, title, body) {
     const s = document.createElement('section');
-    s.innerHTML = `<div class="sec-inner"><h2>${title}</h2>${content}</div>`;
+    s.id = id;
+    s.innerHTML = `<div style="max-width:800px; margin:0 auto;"><div class="icon-container">${iconSet[icon]}</div><h2>${title}</h2>${body}</div>`;
     main.appendChild(s);
 }
 
-// Generar secciones una sola vez
-createSec(CONFIG.textos.tituloHistoria, `<p>${CONFIG.textos.historia}</p>`);
+// Renderizado de secciones
+createSec('historia', 'heart', CONFIG.textos.tituloHistoria, `<p>${CONFIG.textos.historia}</p>`);
+createSec('cuenta', 'calendar', 'SOLO FALTAN', `<div class="countdown-grid"><div class="cd-item"><span class="cd-num" id="days">00</span><span class="cd-lab">Días</span></div><div class="cd-item"><span class="cd-num" id="hours">00</span><span class="cd-lab">Horas</span></div><div class="cd-item"><span class="cd-num" id="mins">00</span><span class="cd-lab">Minutos</span></div><div class="cd-item"><span class="cd-num" id="secs">00</span><span class="cd-lab">Segundos</span></div></div>`);
+let ubicacionHTML = "";
 
-let galeriaHTML = `<div class="gallery-grid">`;
-CONFIG.fotos.forEach(f => {
-    galeriaHTML += `<div class="gallery-item" onclick="openLightbox('${f}')"><img src="${f}" onerror="this.style.display='none'"></div>`;
-});
-galeriaHTML += `</div>`;
-createSec("Mis recuerdos", galeriaHTML);
-
-createSec("Confirmación", `<p>Por favor, confirma tu asistencia.</p><a href="https://wa.me/59899000000" class="btn">WhatsApp</a>`);
-
-// Funciones
-function openLightbox(src) {
-    document.getElementById('lb-img').src = src;
-    document.getElementById('lightbox').style.display = 'flex';
+if (CONFIG.eventos.ceremonia.mostrar) {
+    ubicacionHTML += `
+    <div>
+        <h3>${CONFIG.eventos.ceremonia.t}</h3>
+        <p>
+            ${CONFIG.eventos.ceremonia.f} - ${CONFIG.eventos.ceremonia.h}<br>
+            ${CONFIG.eventos.ceremonia.l}<br>
+            ${CONFIG.eventos.ceremonia.d}
+        </p>
+        <a href="${CONFIG.eventos.ceremonia.m}" target="_blank" class="btn">Ver Mapa</a>
+    </div>`;
 }
 
-const obs = new IntersectionObserver(e => e.forEach(i => { if(i.isIntersecting) i.target.classList.add('visible')}));
+if (CONFIG.eventos.fiesta.mostrar) {
+    ubicacionHTML += `
+    <div style="margin-top:3rem">
+        <h3>${CONFIG.eventos.fiesta.t}</h3>
+        <p>
+            ${CONFIG.eventos.fiesta.f} - ${CONFIG.eventos.fiesta.h}<br>
+            ${CONFIG.eventos.fiesta.l}<br>
+            ${CONFIG.eventos.fiesta.d}
+        </p>
+        <a href="${CONFIG.eventos.fiesta.m}" target="_blank" class="btn">Ver Mapa</a>
+    </div>`;
+}
+  createSec('ubicacion', 'map', 'fecha y lugar', ubicacionHTML);
+  let g = `<div class="gallery-grid">`;
+CONFIG.fotos.forEach(f => g += `<div class="gallery-item" onclick="openLightbox('${f}')"><img src="${f}"></div>`);
+createSec('galeria', 'camera', 'Mis recuerdos', g + `</div>`);
+createSec('rsvp', 'star', 'Confirmación', `<p>Por favor, confirma tu asistencia antes del 10 de noviembre.</p><a href="https://wa.me/59899000000" target="_blank" class="btn">Confirmar WhatsApp</a>`);
+if (CONFIG.playlist.mostrar) {
+    createSec('playlist', 'music', CONFIG.playlist.titulo, `<p>${CONFIG.playlist.texto}</p><a href="${CONFIG.playlist.formulario}" target="_blank" class="btn">${CONFIG.playlist.boton}</a>`);
+}
+createSec('regalos', 'gift', 'Regalos', `<p>${CONFIG.regalos.textoSeccion}</p><button class="btn" onclick="openGiftModal()">Ver Datos</button>`);  
+createSec('cierre', 'heart', CONFIG.cierre.t, `<p>${CONFIG.cierre.s}</p><div style="width:120px; margin:2rem auto; color:var(--accent); opacity:0.5;"><svg viewBox="0 0 100 20" stroke="currentColor"><path d="M0 10 Q25 0 50 10 T100 10" fill="none"/></svg></div>`);
+
+const ORNAMENTOS = {
+    floral: `<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M60 108C46 84 38 64 60 12c22 52 14 72 0 96Z"/><path d="M60 72C42 62 28 48 18 26c24 5 42 20 42 46Z"/><path d="M60 72c18-10 32-24 42-46-24 5-42 20-42 46Z"/><path d="M60 98C44 92 30 83 16 66c22-2 39 7 44 32Z"/><path d="M60 98c16-6 30-15 44-32-22-2-39 7-44 32Z"/></svg>`,
+    estrellas: `<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"/><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"/><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"/></svg>`,
+    ondas: `<svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 36c20-20 40 20 60 0s30-8 40 0"/><path d="M10 60c20-20 40 20 60 0s30-8 40 0"/><path d="M10 84c20-20 40 20 60 0s30-8 40 0"/></svg>`
+};
+
+function crearOrnamento(config, posicion, colorBase) {
+    const ornamento = document.createElement('div');
+    ornamento.className = `ornamento orn-${posicion}`;
+    ornamento.style.width = valorCSS(config.tamaño || 220);
+    ornamento.style.height = valorCSS(config.tamaño || 220);
+    ornamento.style.opacity = config.opacidad ?? 0.08;
+    ornamento.style.color = config.color || colorBase || colores.boton;
+    ornamento.innerHTML = ORNAMENTOS[config.tipo] || ORNAMENTOS.floral;
+    return ornamento;
+}
+
+function aplicarOrnamentos() {
+    const config = CONFIG.ornamentos || {};
+    const secciones = config.secciones || {};
+    const portada = config.portada || {};
+    const colorBase = colores.boton;
+
+    if (portada.mostrar) {
+        const cover = document.getElementById('cover');
+        (portada.posiciones || ["top-left", "top-right"]).forEach(posicion => {
+            cover.appendChild(crearOrnamento(portada, posicion, colorBase));
+        });
+    }
+
+    if (!secciones.mostrar) return;
+
+    const excluidas = secciones.excluirSecciones || [];
+    document.querySelectorAll('section').forEach(section => {
+        if (excluidas.includes(section.id)) return;
+        (secciones.posiciones || ["top-left", "bottom-right"]).forEach(posicion => {
+            section.appendChild(crearOrnamento(secciones, posicion, colorBase));
+        });
+    });
+}
+
+// --- LÓGICA DE FUNCIONAMIENTO ---
+function openLightbox(s) { document.getElementById('lightbox').querySelector('img').src = s; document.getElementById('lightbox').style.display = 'flex'; history.pushState({v:'lb'}, ""); }
+function closeLightbox() { document.getElementById('lightbox').style.display = 'none'; }
+function openGiftModal() {
+    const r = CONFIG.regalos;
+    document.getElementById('m-texto').innerText = r.textoModal;
+    document.getElementById('m-titular').innerText = r.titular;
+    document.getElementById('m-banco').innerText = r.banco;
+    document.getElementById('m-cuenta').innerText = r.cuenta;
+    document.getElementById('m-ci').innerText = r.ci;
+    document.getElementById('gift-modal').style.display = 'flex';
+    history.pushState({v:'mo'}, "");
+}
+function closeGiftModal() { document.getElementById('gift-modal').style.display = 'none'; }
+window.onpopstate = () => { closeLightbox(); closeGiftModal(); };
+function copyAcc() { navigator.clipboard.writeText(CONFIG.regalos.cuenta); const t = document.getElementById('toast'); t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 2000); }
+function toggleMusic() { const m = document.getElementById('bg-music'); m.paused ? m.play() : m.pause(); }
+function updateCD() {
+    const t = CONFIG.global.fechaCuenta - new Date();
+    if(t<0) return;
+    document.getElementById('days').innerText = Math.floor(t/86400000);
+    document.getElementById('hours').innerText = Math.floor((t/3600000)%24);
+    document.getElementById('mins').innerText = Math.floor((t/60000)%60);
+    document.getElementById('secs').innerText = Math.floor((t/1000)%60);
+}
+updateCD();
+setInterval(updateCD, 1000);
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.1});
 document.querySelectorAll('section').forEach(s => obs.observe(s));
+  aplicarOrnamentos();
 </script>
 </body>
 </html>
