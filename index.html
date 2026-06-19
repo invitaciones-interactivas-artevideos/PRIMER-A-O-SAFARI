@@ -326,193 +326,182 @@ section > div {
    ★ CONFIGURACIÓN FÁCIL
 ═════════════════════════════════════════= */
 const CONFIG = {
-    global: {
-        /* Para editar los textos y estilos de portada, usar el bloque "portada" de abajo */
-        nombres: "",
-        frase: "",
-        fecha: "",
-        fechaCuenta: new Date(2026, 11, 20, 17, 0),
-        tipoPortada: "foto", // "foto", "video" o "diseno"
+  global: {
+    nombres: "",
+    frase: "",
+    fecha: "",
+    fechaCuenta: new Date(2026, 11, 20, 17, 0),
+    tipoPortada: "foto", // "foto", "video" o "diseno"
 
-fotoPort: "cover.jpg",
-videoPort: "portada.mp4",
-disenoPort: "floral.jpg",
+    fotoPort: "cover.jpg",
+    videoPort: "portada.mp4",
+    disenoPort: "floral.jpg",
 
-        /* ──── POSICIÓN DE LA FOTO (Usar números de 0 a 100) ──── */
-        /* 0 = Arriba de todo | 50 = Centro | 100 = Abajo de todo */
-        posicionVerticalPC: 35, 
-        posicionVerticalMovil: 50
-    },
+    posicionVerticalPC: 35,
+    posicionVerticalMovil: 50
+  },
 
-portada: {
-    /* Textos principales de la portada */
-    /* FUENTES: 1 Cormorant | 2 Great Vibes | 3 Playfair | 4 Jost | 5 Poppins | 6 Montserrat | 7 Quicksand | 8 Georgia | 9 Parisienne | 10 Allura | 11 Alex Brush | 12 Cinzel | 13 Raleway | 14 Nunito */
+  portada: {
     frase: {
-        mostrar: false,
-        texto: "Mi Primer Añito",
-        fuente: 2,
-        color: "#3E8C45",
-        tamaño: "3rem",
-        tamañoMovil: "1.35rem",
-        grosor: 300,
-        espaciadoLetras: "5px",
-        interlineado: "1.2",
-        mayusculas: true,
-        margenAbajo: "10rem",
-        moverDerechaIzquierda: 0,
-        moverArribaAbajo: 0,
-        sombra: "0 2px 12px rgba(0,0,0,0.25)"
+      mostrar: false,
+      texto: "Mi Primer Añito",
+      fuente: 2,
+      color: "#3E8C45",
+      tamaño: "3rem",
+      tamañoMovil: "1.35rem",
+      grosor: 300,
+      espaciadoLetras: "5px",
+      interlineado: "1.2",
+      mayusculas: true,
+      margenAbajo: "10rem",
+      moverDerechaIzquierda: 0,
+      moverArribaAbajo: 0,
+      sombra: "0 2px 12px rgba(0,0,0,0.25)"
     },
+
     nombre: {
-        mostrar: false,
-        texto: "Lucas",
-        fuente: 12,
-        color: "#327D39",
-        tamaño: "clamp(4rem, 9vw, 6rem)",
-        tamañoMovil: "4rem",
-        grosor: 300,
-        espaciadoLetras: "2px",
-        interlineado: "1",
-        mayusculas: false,
-        margenAbajo: "9rem",
-        moverDerechaIzquierda: 0,
-        moverArribaAbajo: 0,
-        sombra: "0 3px 18px rgba(255,255,255,0.18)"
+      mostrar: false,
+      texto: "Lucas",
+      fuente: 12,
+      color: "#327D39",
+      tamaño: "clamp(4rem, 9vw, 6rem)",
+      tamañoMovil: "4rem",
+      grosor: 300,
+      espaciadoLetras: "2px",
+      interlineado: "1",
+      mayusculas: false,
+      margenAbajo: "9rem",
+      moverDerechaIzquierda: 0,
+      moverArribaAbajo: 0,
+      sombra: "0 3px 18px rgba(255,255,255,0.18)"
     },
+
     fecha: {
-        mostrar: false,
-        texto: "",
-        fuente: 12,
-        color: "#FFFFFF",
-        tamaño: "1.3rem",
-        tamañoMovil: "1rem",
-        grosor: 300,
-        espaciadoLetras: "3px",
-        interlineado: "1.3",
-        mayusculas: true,
-        margenArriba: "0.2rem",
-        moverDerechaIzquierda: 0,
-        moverArribaAbajo: 0,
-        sombra: "0 2px 12px rgba(0,0,0,0.25)"
+      mostrar: false,
+      texto: "",
+      fuente: 12,
+      color: "#FFFFFF",
+      tamaño: "1.3rem",
+      tamañoMovil: "1rem",
+      grosor: 300,
+      espaciadoLetras: "3px",
+      interlineado: "1.3",
+      mayusculas: true,
+      margenArriba: "0.2rem",
+      moverDerechaIzquierda: 0,
+      moverArribaAbajo: 0,
+      sombra: "0 2px 12px rgba(0,0,0,0.25)"
     },
+
     cajaTexto: {
-        anchoMaximo: "900px",
-        alineacion: "center", // center, left o right
-        moverDerechaIzquierdaPC: 0,
-        moverArribaAbajoPC: 130,
-        moverDerechaIzquierdaMovil: 0,
-        moverArribaAbajoMovil: 130
+      anchoMaximo: "900px",
+      alineacion: "center",
+      moverDerechaIzquierdaPC: 0,
+      moverArribaAbajoPC: 130,
+      moverDerechaIzquierdaMovil: 0,
+      moverArribaAbajoMovil: 130
     },
+
     fondo: {
-        oscurecer: "rgba(0,0,0,0.0)"
+      oscurecer: "rgba(0,0,0,0.0)"
     }
-},
+  },
 
-diseno: {
-   paleta: 5,
-   fuenteTitulo:12,
-   fuenteTexto: 1,
-   tamañoTitulo: "1.8rem", //de las secciones
-   tamañoTexto: "1.2rem",  //de las secciones
-   espacioTituloATexto: 30,
-   espacioTextoABoton: 40,
-},
-textos: {
+  diseno: {
+    paleta: 5,
+    fuenteTitulo: 12,
+    fuenteTexto: 1,
+    tamañoTitulo: "1.8rem",
+    tamañoTexto: "1.2rem",
+    espacioTituloATexto: 30,
+    espacioTextoABoton: 40
+  },
+
+  textos: {
     tituloHistoria: "Se Acerca Mi Primer cumple!",
-   historia: `Deseo que me acompañes a celebrar este día tan especial.`
-},
+    historia: "Deseo que me acompañes a celebrar este día tan especial."
+  },
 
-eventos: {
-    ceremonia: { 
-        mostrar: false,
-        t: "Ceremonia",
-        f: "20 de noviembre",
-        h: "17:00 Horas",
-        l: "Iglesia San Francisco de Asís",
-        d: "Cmno. Torres 3231, Montevideo",
-        m: "https://www.google.com/maps"
+  eventos: {
+    ceremonia: {
+      mostrar: false,
+      t: "Ceremonia",
+      f: "20 de noviembre",
+      h: "17:00 Horas",
+      l: "Iglesia",
+      d: "Dirección",
+      m: "https://www.google.com/maps"
     },
 
-    fiesta: { 
-        mostrar: true,
-        t: "",
-        f: "20 de noviembre",
-        h: "16:00 Horas",
-        l: "Salón de Eventos Aurora Palace",
-        d: "Avda Las Palmas 1212, Montevideo",
-        m: "https://www.google.com/maps"
+    fiesta: {
+      mostrar: true,
+      t: "Fiesta",
+      f: "20 de noviembre",
+      h: "16:00 Horas",
+      l: "Salón de Eventos",
+      d: "Dirección",
+      m: "https://www.google.com/maps"
     }
-},
+  },
 
-playlist: {
-    mostrar: false, // Cambiar a false para ocultar esta seccion
-    titulo: "Playlist",
-    texto: "Ayudame a elegir las canciones que no pueden faltar",
-    boton: "playlist",
-    formulario: "https://docs.google.com/forms/d/e/FORM_ID/viewform"
-},
-
-regalos: {
+  playlist: {
     mostrar: false,
-    textoSeccion: "El mejor regalo es que estés presente, pero si deseas colaborar con mis sueños, tienes la info aquí:",
-    textoModal: "Datos de cuenta colectiva",
-    titular: "Sofía 15 años",
-    banco: "Santander",
-    cuenta: "1234567890",
-    ci: "1.234.567-8"
-},
+    titulo: "Playlist",
+    texto: "Ayudame a elegir canciones",
+    boton: "Ir",
+    formulario: ""
+  },
 
-ornamentos: {
+  regalos: {
+    mostrar: false,
+    textoSeccion: "El mejor regalo es tu presencia",
+    textoModal: "Datos de cuenta",
+    titular: "",
+    banco: "",
+    cuenta: "",
+    ci: ""
+  },
+
+  ornamentos: {
     secciones: {
-        mostrar: true,
-        tipo: "estrellas",
-        color: "",
-        opacidad: 0.08,
-        tamaño: 220,
-        posiciones: ["top-left", "bottom-right"],
-        excluirSecciones: []
+      mostrar: true,
+      tipo: "estrellas",
+      color: "",
+      opacidad: 0.08,
+      tamaño: 220,
+      posiciones: ["top-left", "bottom-right"],
+      excluirSecciones: []
     },
 
     portada: {
-        mostrar: false,
-        tipo: "estrellas",
-        color: "#FFFFFF",
-        opacidad: 0.16,
-        tamaño: 180,
-        posiciones: ["top-left", "top-right"]
+      mostrar: false,
+      tipo: "estrellas",
+      color: "#FFFFFF",
+      opacidad: 0.16,
+      tamaño: 180,
+      posiciones: ["top-left", "top-right"]
     }
-},
+  },
 
-// 👇 ESTO VA FUERA DE ORNAMENTOS
-decoraciones: {
-    historia: {
-        imagen: "jirafa.png",
-        tamaño: 140,
-        top: 20,
-        right: 20
-    },
-    
+  decoraciones: {
+    historia: { imagen: "jirafa.png", tamaño: 140, top: 20, right: 20 },
+    cuenta: { imagen: "elefante.png", tamaño: 120, top: 20, left: 20 },
+    ubicacion: { imagen: "leon.png", tamaño: 130, bottom: 20, right: 20 },
+    galeria: { imagen: "mono.png", tamaño: 150, top: 20, right: 20 },
+    rsvp: { imagen: "cebra.png", tamaño: 120, bottom: 20, left: 20 }
+  },
 
-cierre: {
+  cierre: {
     t: "¡Te espero!",
     s: "Tu presencia es muy importante<br> para mí."
-},
+  },
 
-fotos: [
+  fotos: [
     "foto1.jpg",
     "foto2.jpg",
-    "foto3.jpg",
-    "foto4.jpg",
-    "foto5.jpg",
-    "foto6.jpg",
-    "foto7.jpg",
-    "foto8.jpg",
-    "foto9.jpg",
-    "foto10.jpg"
-
-
-]
-  };
+    "foto3.jpg"
+  ]
+};
   /* ========= PALETAS DE COLORES ========= */
   
 /* ========= FUENTES DISPONIBLES ========= */
