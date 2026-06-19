@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0045)file:///C:/Users/Nnacy/Downloads/index_9.html -->
+<!-- saved from url=(0046)file:///C:/Users/Nnacy/Downloads/index_10.html -->
 <html lang="es" style="--bg-1: #F5F0E4; --bg-2: #DDD5B0; --title-color: #5A4A0F; --text-color: #4A3C1E; --accent: #C9A227; --title-font: &#39;Cinzel&#39;, serif; --body-font: &#39;Cormorant Garamond&#39;, serif; --body-size: 1.2rem; --title-size: 1.8rem; --pos-pc-vertical: 35%; --pos-movil-vertical: 50%; --espacio-titulo-texto: 30px; --espacio-texto-boton: 40px; --cover-content-width: 900px; --cover-content-x: 0px; --cover-content-y: 130px; --cover-content-x-mobile: 0px; --cover-content-y-mobile: 130px; --cover-text-align: center;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Invitación Digital Premium</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com/">
-<link id="font-link" href="./3Invitación Digital Premium_files/css2" rel="stylesheet">
+<link id="font-link" href="./4nvitación Digital Premium_files/css2" rel="stylesheet">
 
 <style>
 /* ── VARIABLES DE DISEÑO ── */
@@ -105,12 +105,39 @@ body {
 }
 
 /* ── SECCIONES ── */
-section { padding: 6rem 1.5rem; opacity: 0; transform: translateY(20px); transition: 1s all ease; position: relative; overflow: hidden; }
+section {
+    padding: 5rem 1.5rem 0;
+    opacity: 0; transform: translateY(20px); transition: 1s all ease;
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column; align-items: center;
+}
 section.visible { opacity: 1; transform: translateY(0); }
 section:nth-of-type(odd) { background-color: var(--bg-1) !important; }
 section:nth-of-type(even) { background-color: var(--bg-2) !important; }
 
-section > div { position: relative; z-index: 1; }
+/* contenedor de texto: centra y deja espacio abajo */
+section > .sec-inner {
+    position: relative; z-index: 1;
+    width: 100%; max-width: 800px;
+    padding-bottom: 2rem;
+}
+
+/* animal: en el flujo normal, nunca encima del texto */
+.sec-animal {
+    display: block;
+    width: var(--animal-size-mobile, 180px);
+    max-width: 38%;
+    height: auto;
+    opacity: var(--animal-opacity, 0.85);
+    flex-shrink: 0;
+    margin-top: 1.5rem;
+}
+.sec-animal.derecha { align-self: flex-end; margin-right: 2rem; }
+.sec-animal.izquierda { align-self: flex-start; margin-left: 2rem; }
+
+@media (min-width: 768px) {
+    .sec-animal { width: var(--animal-size-pc, 260px); max-width: 28%; }
+}
 
 h2 {
     font-family: var(--title-font); font-size: var(--title-size);
@@ -231,15 +258,6 @@ a.btn {
 }
 
 /* ── DECORACIONES PNG ── */
-.decoracion-png {
-    position: absolute;
-    pointer-events: none;
-    z-index: 0;
-}
-.decoracion-png img {
-    display: block;
-    max-width: 100%;
-}
 @keyframes floatDeco {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-8px); }
@@ -270,22 +288,22 @@ a.btn {
    <div class="scroll-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"></path></svg></div>
 </div>
 
-<div id="main-content"><section id="historia" class="visible"><div style="max-width:800px; margin:0 auto;"><div class="icon-container"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg></div><h2>¡Se Acerca Mi Primer Cumple!</h2><p>Deseo que me acompañes a celebrar este día tan especial.</p></div><div class="decoracion-png" style="position: absolute; opacity: 0.85; z-index: 0; pointer-events: none; bottom: 0px; right: 20px;"><img src="file:///C:/Users/Nnacy/Downloads/jirafa.png" alt="" style="width: 280px; height: auto; display: block;"></div><div class="ornamento orn-top-left" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div><div class="ornamento orn-bottom-right" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div></section><section id="cuenta" class="visible"><div style="max-width:800px; margin:0 auto;"><div class="icon-container"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></div><h2>SOLO FALTAN</h2><div class="countdown-grid">
+<div id="main-content"><section id="historia" style="--animal-size-pc: 280px; --animal-size-mobile: 160px; --animal-opacity: 0.85;"><div class="sec-inner"><div class="icon-container"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg></div><h2>¡Se Acerca Mi Primer Cumple!</h2><p>Deseo que me acompañes a celebrar este día tan especial.</p></div><img src="file:///C:/Users/Nnacy/Downloads/jirafa.png" alt="" class="sec-animal derecha" style="animation: auto ease 0s 1 normal none running none;"><div class="ornamento orn-top-left" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div><div class="ornamento orn-bottom-right" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div></section><section id="cuenta" style="--animal-size-pc: 260px; --animal-size-mobile: 150px; --animal-opacity: 0.85;"><div class="sec-inner"><div class="icon-container"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></div><h2>SOLO FALTAN</h2><div class="countdown-grid">
         <div class="cd-item"><span class="cd-num" id="days">183</span><span class="cd-lab">Días</span></div>
         <div class="cd-item"><span class="cd-num" id="hours">21</span><span class="cd-lab">Horas</span></div>
-        <div class="cd-item"><span class="cd-num" id="mins">49</span><span class="cd-lab">Minutos</span></div>
-        <div class="cd-item"><span class="cd-num" id="secs">20</span><span class="cd-lab">Segundos</span></div>
-    </div></div><div class="decoracion-png" style="position: absolute; opacity: 0.85; z-index: 0; pointer-events: none; bottom: 0px; left: 20px;"><img src="file:///C:/Users/Nnacy/Downloads/elefante.png" alt="" style="width: 260px; height: auto; display: block;"></div><div class="ornamento orn-top-left" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div><div class="ornamento orn-bottom-right" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div></section><section id="ubicacion"><div style="max-width:800px; margin:0 auto;"><div class="icon-container"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div><h2>Fecha y lugar</h2>
+        <div class="cd-item"><span class="cd-num" id="mins">40</span><span class="cd-lab">Minutos</span></div>
+        <div class="cd-item"><span class="cd-num" id="secs">36</span><span class="cd-lab">Segundos</span></div>
+    </div></div><img src="file:///C:/Users/Nnacy/Downloads/elefante.png" alt="" class="sec-animal izquierda" style="animation: auto ease 0s 1 normal none running none;"><div class="ornamento orn-top-left" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div><div class="ornamento orn-bottom-right" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div></section><section id="ubicacion" style="--animal-size-pc: 260px; --animal-size-mobile: 150px; --animal-opacity: 0.85;"><div class="sec-inner"><div class="icon-container"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div><h2>Fecha y lugar</h2>
     <div style="margin-top:3rem">
         <h3>Fiesta</h3>
         <p>20 de noviembre - 16:00 Horas<br>
         Salón de Eventos<br>Dirección</p>
         <a href="https://www.google.com/maps" target="_blank" class="btn">Ver Mapa</a>
-    </div></div><div class="decoracion-png" style="position: absolute; opacity: 0.85; z-index: 0; pointer-events: none; bottom: 0px; right: 20px;"><img src="file:///C:/Users/Nnacy/Downloads/leon.png" alt="" style="width: 260px; height: auto; display: block;"></div><div class="ornamento orn-top-left" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div><div class="ornamento orn-bottom-right" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div></section><section id="galeria"><div style="max-width:800px; margin:0 auto;"><div class="icon-container"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"></path><circle cx="12" cy="13" r="4"></circle></svg></div><h2>Mis recuerdos</h2><div class="gallery-grid"><div class="gallery-item" onclick="openLightbox(&#39;foto1.jpg&#39;)"><img src="file:///C:/Users/Nnacy/Downloads/foto1.jpg" loading="lazy"></div><div class="gallery-item" onclick="openLightbox(&#39;foto2.jpg&#39;)"><img src="file:///C:/Users/Nnacy/Downloads/foto2.jpg" loading="lazy"></div><div class="gallery-item" onclick="openLightbox(&#39;foto3.jpg&#39;)"><img src="file:///C:/Users/Nnacy/Downloads/foto3.jpg" loading="lazy"></div><div class="gallery-item" onclick="openLightbox(&#39;foto4.jpg&#39;)"><img src="file:///C:/Users/Nnacy/Downloads/foto4.jpg" loading="lazy"></div><div class="gallery-item" onclick="openLightbox(&#39;foto5.jpg&#39;)"><img src="file:///C:/Users/Nnacy/Downloads/foto5.jpg" loading="lazy"></div><div class="gallery-item" onclick="openLightbox(&#39;foto6.jpg&#39;)"><img src="./3Invitación Digital Premium_files/foto6.jpg" loading="lazy"></div></div></div><div class="decoracion-png" style="position: absolute; opacity: 0.85; z-index: 0; pointer-events: none; bottom: 0px; right: 20px;"><img src="file:///C:/Users/Nnacy/Downloads/mono.png" alt="" style="width: 260px; height: auto; display: block;"></div><div class="ornamento orn-top-left" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div><div class="ornamento orn-bottom-right" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div></section><section id="rsvp"><div style="max-width:800px; margin:0 auto;"><div class="icon-container"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2l2.8 6.2L22 9l-5 4.7L18.2 22 12 18.5 5.8 22 7 13.7 2 9l7.2-.8L12 2z"></path></svg></div><h2>Confirmación</h2><p>Por favor, confirma tu asistencia antes del 10 de noviembre.</p>
-    <a href="https://wa.me/59899000000" target="_blank" class="btn">Confirmar WhatsApp</a></div><div class="decoracion-png" style="position: absolute; opacity: 0.85; z-index: 0; pointer-events: none; bottom: 0px; left: 20px;"><img src="file:///C:/Users/Nnacy/Downloads/cebra.png" alt="" style="width: 260px; height: auto; display: block;"></div><div class="ornamento orn-top-left" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div><div class="ornamento orn-bottom-right" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div></section><section id="cierre"><div style="max-width:800px; margin:0 auto;"><div class="icon-container"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg></div><h2>¡Te espero!</h2><p>Tu presencia es muy importante<br> para mí.</p>
+    </div></div><img src="file:///C:/Users/Nnacy/Downloads/leon.png" alt="" class="sec-animal derecha" style="animation: auto ease 0s 1 normal none running none;"><div class="ornamento orn-top-left" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div><div class="ornamento orn-bottom-right" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div></section><section id="galeria" style="--animal-size-pc: 260px; --animal-size-mobile: 150px; --animal-opacity: 0.85;"><div class="sec-inner"><div class="icon-container"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"></path><circle cx="12" cy="13" r="4"></circle></svg></div><h2>Mis recuerdos</h2><div class="gallery-grid"><div class="gallery-item" onclick="openLightbox(&#39;foto1.jpg&#39;)"><img src="file:///C:/Users/Nnacy/Downloads/foto1.jpg" loading="lazy"></div><div class="gallery-item" onclick="openLightbox(&#39;foto2.jpg&#39;)"><img src="file:///C:/Users/Nnacy/Downloads/foto2.jpg" loading="lazy"></div><div class="gallery-item" onclick="openLightbox(&#39;foto3.jpg&#39;)"><img src="file:///C:/Users/Nnacy/Downloads/foto3.jpg" loading="lazy"></div><div class="gallery-item" onclick="openLightbox(&#39;foto4.jpg&#39;)"><img src="file:///C:/Users/Nnacy/Downloads/foto4.jpg" loading="lazy"></div><div class="gallery-item" onclick="openLightbox(&#39;foto5.jpg&#39;)"><img src="file:///C:/Users/Nnacy/Downloads/foto5.jpg" loading="lazy"></div><div class="gallery-item" onclick="openLightbox(&#39;foto6.jpg&#39;)"><img src="./4nvitación Digital Premium_files/foto6.jpg" loading="lazy"></div></div></div><img src="file:///C:/Users/Nnacy/Downloads/mono.png" alt="" class="sec-animal derecha" style="animation: auto ease 0s 1 normal none running none;"><div class="ornamento orn-top-left" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div><div class="ornamento orn-bottom-right" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div></section><section id="rsvp" style="--animal-size-pc: 260px; --animal-size-mobile: 150px; --animal-opacity: 0.85;"><div class="sec-inner"><div class="icon-container"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2l2.8 6.2L22 9l-5 4.7L18.2 22 12 18.5 5.8 22 7 13.7 2 9l7.2-.8L12 2z"></path></svg></div><h2>Confirmación</h2><p>Por favor, confirma tu asistencia antes del 10 de noviembre.</p>
+    <a href="https://wa.me/59899000000" target="_blank" class="btn">Confirmar WhatsApp</a></div><img src="file:///C:/Users/Nnacy/Downloads/cebra.png" alt="" class="sec-animal izquierda" style="animation: auto ease 0s 1 normal none running none;"><div class="ornamento orn-top-left" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div><div class="ornamento orn-bottom-right" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div></section><section id="cierre" style="--animal-size-pc: 260px; --animal-size-mobile: 150px; --animal-opacity: 0.85;"><div class="sec-inner"><div class="icon-container"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg></div><h2>¡Te espero!</h2><p>Tu presencia es muy importante<br> para mí.</p>
     <div style="width:120px; margin:2rem auto; color:var(--accent); opacity:0.5;">
         <svg viewBox="0 0 100 20" stroke="currentColor"><path d="M0 10 Q25 0 50 10 T100 10" fill="none"></path></svg>
-    </div></div><div class="decoracion-png" style="position: absolute; opacity: 0.85; z-index: 0; pointer-events: none; bottom: 0px; right: 20px;"><img src="file:///C:/Users/Nnacy/Downloads/cocodrilo.png" alt="" style="width: 260px; height: auto; display: block;"></div><div class="ornamento orn-top-left" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div><div class="ornamento orn-bottom-right" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div></section></div>
+    </div></div><img src="file:///C:/Users/Nnacy/Downloads/cocodrilo.png" alt="" class="sec-animal derecha" style="animation: auto ease 0s 1 normal none running none;"><div class="ornamento orn-top-left" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div><div class="ornamento orn-bottom-right" style="width: 220px; height: 220px; opacity: 0.08; color: rgb(201, 162, 39);"><svg viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M60 12l7 25 25 7-25 7-7 25-7-25-25-7 25-7 7-25Z"></path><path d="M25 74l4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z"></path><path d="M94 72l3 10 10 3-10 3-3 10-3-10-10-3 10-3 3-10Z"></path></svg></div></section></div>
 
 <!-- Modal Regalos -->
 <div id="gift-modal" class="modal" onclick="closeGiftModal()">
@@ -304,7 +322,7 @@ a.btn {
 
 <div id="lightbox" onclick="closeLightbox()">
     <span class="close-btn" style="position:fixed; top:30px; right:30px; font-size:3rem;">×</span>
-    <img src="file:///C:/Users/Nnacy/Downloads/index_9.html" onclick="event.stopPropagation()">
+    <img src="file:///C:/Users/Nnacy/Downloads/index_10.html" onclick="event.stopPropagation()">
 </div>
 
 <script>
@@ -473,21 +491,18 @@ const CONFIG = {
   /* ══════════════════════════════════════════════════════════════
      ★ DECORACIONES PNG — Una imagen animal por sección
      ──────────────────────────────────────────────────────────────
-     Cada sección tiene su propio bloque. Edita fácilmente:
+     El animal siempre va al PIE de la sección, en el flujo normal.
+     No hay superposición con el texto. Solo editá estos valores:
 
-       imagen            → nombre del archivo PNG (en tu repo)
-       mostrar           → true / false
-       tamañoPC          → ancho en píxeles en escritorio
-       tamañoMovil       → ancho en píxeles en móvil
-       top / bottom      → distancia desde arriba o abajo (px)
-                           ⚠ Usá solo top O solo bottom, no los dos
-       left / right      → distancia desde izquierda o derecha (px)
-                           ⚠ Usá solo left O solo right, no los dos
-       opacidad          → 0.0 (invisible) → 1.0 (sólido)
-       flotar            → true = animación flotante / false = estático
-       paddingExtraAbajo → px extra de relleno en la parte baja de la
-                           sección, para que el texto no quede tapado
-                           por el animal cuando está en bottom: 0
+       imagen      → nombre del archivo PNG (en tu repo)
+       mostrar     → true / false
+       tamañoPC    → ancho en píxeles en escritorio
+       tamañoMovil → ancho en píxeles en móvil
+       left        → pon cualquier valor (ej: 20) para que quede a la IZQUIERDA
+       right       → pon cualquier valor (ej: 20) para que quede a la DERECHA
+                     ⚠ Usá solo left O solo right, no los dos a la vez
+       opacidad    → 0.0 (invisible) → 1.0 (sólido)
+       flotar      → true = animación flotante suave / false = estático
      ══════════════════════════════════════════════════════════════ */
   decoraciones: {
     mostrarGlobal: true,   // false = oculta TODAS las decoraciones
@@ -767,7 +782,7 @@ const main = document.getElementById('main-content');
 function createSec(id, icon, title, body) {
     const s = document.createElement('section');
     s.id = id;
-    s.innerHTML = `<div style="max-width:800px; margin:0 auto;"><div class="icon-container">${iconSet[icon]}</div><h2>${title}</h2>${body}</div>`;
+    s.innerHTML = `<div class="sec-inner"><div class="icon-container">${iconSet[icon]}</div><h2>${title}</h2>${body}</div>`;
     main.appendChild(s);
 }
 
@@ -903,35 +918,23 @@ function aplicarDecoraciones() {
         const section = document.getElementById(seccionId);
         if (!section) return;
 
-        const size = esMovil ? (data.tamañoMovil || 80) : (data.tamañoPC || 140);
+        const sizePC     = data.tamañoPC     || 260;
+        const sizeMobile = data.tamañoMovil  || 160;
+        const opacidad   = data.opacidad     ?? 0.85;
+        const lado       = data.left !== undefined ? "izquierda" : "derecha";
 
-        const wrapper = document.createElement("div");
-        wrapper.className       = "decoracion-png";
-        wrapper.style.position  = "absolute";
-        wrapper.style.opacity   = data.opacidad ?? 0.85;
-        wrapper.style.zIndex    = "0";
-        wrapper.style.pointerEvents = "none";
-
-        /* Posicionamiento — usá solo top O bottom, y left O right */
-        if (data.top    !== undefined) wrapper.style.top    = data.top    + "px";
-        if (data.bottom !== undefined) wrapper.style.bottom = data.bottom + "px";
-        if (data.left   !== undefined) wrapper.style.left   = data.left   + "px";
-        if (data.right  !== undefined) wrapper.style.right  = data.right  + "px";
-
-        /* Animación flotante opcional */
-        if (data.flotar) {
-            wrapper.style.animation = "floatDeco 4s ease-in-out infinite";
-        }
+        /* CSS vars para que la hoja de estilos pueda responder */
+        section.style.setProperty('--animal-size-pc',     sizePC     + "px");
+        section.style.setProperty('--animal-size-mobile', sizeMobile + "px");
+        section.style.setProperty('--animal-opacity',     opacidad);
 
         const img = document.createElement("img");
-        img.src           = data.imagen;
-        img.alt           = "";
-        img.style.width   = size + "px";
-        img.style.height  = "auto";
-        img.style.display = "block";
+        img.src          = data.imagen;
+        img.alt          = "";
+        img.className    = "sec-animal " + lado;
+        img.style.animation = data.flotar ? "floatDeco 4s ease-in-out infinite" : "none";
 
-        wrapper.appendChild(img);
-        section.appendChild(wrapper);
+        section.appendChild(img);
     });
 }
 
