@@ -509,25 +509,31 @@ a.btn {
     padding: 4.25rem 1rem;
   }
 
-  .section-floor,
-  .section-floor.no-action {
-    width: 100%;
-    grid-template-columns: 1fr;
-    justify-items: center;
-  }
+  .section-floor {
+  width: 100%;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.section-floor.no-action {
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
 
   .section-floor.has-action .section-image-wrap {
-    order: 2;
-  }
+  order: 1;
+}
 
-  .section-actions {
-    order: 1;
-  }
+.section-actions {
+  order: 2;
+}
 
-  .section-image-wrap {
-    width: var(--section-img-size-mobile, min(230px, 70vw));
-    max-width: 72vw;
-  }
+ .section-image-wrap {
+  width: var(--section-img-size-mobile, min(230px, 70vw));
+  max-width: 40vw;
+}
 
   .btn,
   button.btn,
