@@ -283,10 +283,14 @@ h3::after {
 }
 
 .section-floor.no-action {
-  grid-template-columns: minmax(150px, 320px);
+  grid-template-columns: 1fr;
   justify-items: center;
 }
 
+.section-floor.has-action {
+  grid-template-columns: auto 1fr;
+  align-items: center;
+}
 .section-actions {
   display: flex;
   flex-wrap: wrap;
@@ -983,9 +987,26 @@ function createSec(id, icon, title, copyHTML, actionHTML = "") {
 
   const imageHTML = id === "galeria" ? "" : imagenSeccionHTML(id);
   const hasAction = Boolean(actionHTML);
-  const floorHTML = imageHTML
-    ? `<div class="section-floor ${hasAction ? "has-action" : "no-action"}">${hasAction ? `<div class="section-actions">${actionHTML}</div>` : ""}${imageHTML}</div>`
-    : hasAction ? `<div class="section-floor no-action"><div class="section-actions">${actionHTML}</div></div>` : "";
+  let floorHTML = "";
+
+if (imageHTML && hasAction) {
+  floorHTML = `<div class="section-floor has-action">
+    ${imageHTML}
+    <div class="section-actions">${actionHTML}</div>
+  </div>`;
+}
+
+else if (imageHTML && !hasAction) {
+  floorHTML = `<div class="section-floor no-action">
+    ${imageHTML}
+  </div>`;
+}
+
+else if (!imageHTML && hasAction) {
+  floorHTML = `<div class="section-floor no-action">
+    <div class="section-actions">${actionHTML}</div>
+  </div>`;
+}
 
   s.innerHTML = `
     <div class="section-inner">
