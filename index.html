@@ -305,7 +305,9 @@ h3::after {
   width: min(680px, 100%);
   margin: var(--espacio-texto-boton) auto 0;
   display: grid;
-  grid-template-columns: minmax(96px, 148px) minmax(130px, 1fr);
+  .section-floor {
+  grid-template-columns: auto 1fr;
+}
   gap: clamp(18px, 5vw, 38px);
   align-items: end;
   justify-content: center;
@@ -361,7 +363,7 @@ a.btn {
 
 .section-image-wrap {
   width: var(--section-img-size, 240px);
-  max-width: min(46vw, 320px);
+  max-width: none;
   justify-self: center;
   transform: translate(var(--section-img-x, 0px), var(--section-img-y, 0px));
   opacity: var(--section-img-opacity, 1);
@@ -537,13 +539,18 @@ a.btn {
     min-height: auto;
     padding: 4.25rem 1rem;
   }
-
-  .section-floor {
+.section-floor {
+  display: grid;
   width: 100%;
   grid-template-columns: auto auto;
   justify-content: center;
   align-items: center;
   gap: 8px;
+}
+  .section-image-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .section-floor.no-action {
