@@ -302,15 +302,12 @@ h3::after {
 }
 
 .section-floor {
-  width: min(680px, 100%);
-  margin: var(--espacio-texto-boton) auto 0;
   display: grid;
-  .section-floor {
-  grid-template-columns: auto 1fr;
-}
-  gap: clamp(18px, 5vw, 38px);
-  align-items: end;
+  width: 100%;
+  grid-template-columns: auto auto;
   justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
 .section-floor.no-action {
@@ -362,10 +359,15 @@ a.btn {
 }
 
 .section-image-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: var(--section-img-size, 240px);
   max-width: none;
-  justify-self: center;
-  transform: translate(var(--section-img-x, 0px), var(--section-img-y, 0px));
+  transform: translate(
+    var(--section-img-x, 0px),
+    var(--section-img-y, 0px)
+  );
   opacity: var(--section-img-opacity, 1);
   pointer-events: none;
 }
@@ -531,54 +533,56 @@ a.btn {
 }
 
 @media (min-width: 768px) {
-  .gallery-grid { grid-template-columns: repeat(4, 1fr); }
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 @media (max-width: 640px) {
+
   section {
     min-height: auto;
     padding: 4.25rem 1rem;
   }
-.section-floor {
-  display: grid;
-  width: 100%;
-  grid-template-columns: auto auto;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-}
+
+  .section-floor {
+    display: grid;
+    width: 100%;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+
   .section-image-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-.section-floor.no-action {
-  grid-template-columns: 1fr;
-  justify-items: center;
-}
+  .section-floor.no-action {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
 
- .section-floor.has-action .section-image-wrap {
-  order: 1;
-}
+  .section-floor.has-action .section-image-wrap {
+    order: 1;
+  }
 
-.section-floor.has-action .section-image-wrap {
-  order: 1;
-}
+  .section-floor.has-action {
+    transform: translateX(-15px);
+  }
 
-.section-floor.has-action {
-  transform: translateX(-15px);
-}
+  .section-actions {
+    order: 2;
+  }
 
-.section-actions {
-  order: 2;
-}
+  .section-image-wrap {
+    width: var(--section-img-size-mobile, min(230px, 70vw));
+    max-width: none;
+  }
 
- .section-image-wrap {
-  width: var(--section-img-size-mobile, min(230px, 70vw));
-  max-width: 40vw;
 }
-
   .btn,
   button.btn,
   a.btn {
